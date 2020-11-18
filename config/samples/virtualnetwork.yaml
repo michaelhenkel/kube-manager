@@ -1,0 +1,41 @@
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: NetworkIPAM
+metadata:
+  namespace: project-kubemanager
+  name: networkipam-kubemanager
+  annotations:
+    core.juniper.net/display-name: Network IPAM for Kube Manager
+    core.juniper.net/description:
+      NetworkIPAM used by Kube Manager
+spec:
+  parent:
+    apiVersion: core.contrail.juniper.net/v1alpha1
+    kind: Project
+    name: project-kubemanager
+---
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: VirtualNetwork
+metadata:
+  namespace: project-kubemanager
+  name: virtualnetwork-kubemanager
+  annotations:
+    core.juniper.net/display-name: Virtual Network for Kube Manager
+    core.juniper.net/description:
+      VirtualNetwork used by Kube Manager to connect all Pods
+spec:
+  fabricSNAT: true
+  parent:
+    apiVersion: core.contrail.juniper.net/v1alpha1
+    kind: Project
+    name: project-kubemanager
+  networkIpamReferences:
+    - apiVersion: core.contrail.juniper.net/v1alpha1
+      kind: NetworkIPAM
+      namespace: project-kubemanager
+      name: networkipam-kubemanager
+      attributes:
+        ipamSubnets:
+          - subnet:
+              ipPrefix: 10.0.0.0
+              ipPrefixLen: 24
+            defaultGateway: 10.0.0.1

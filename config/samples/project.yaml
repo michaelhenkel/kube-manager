@@ -1,0 +1,10 @@
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: Project
+metadata:
+  name: project-kubemanager
+  annotations:
+    core.juniper.net/display-name: Contrail Kube Manager project
+    core.juniper.net/description:
+      This project is used by Contrail Kube Manager to own its resources
+spec:
+  domain: default-domain

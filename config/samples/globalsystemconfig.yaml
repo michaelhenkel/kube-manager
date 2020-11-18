@@ -1,0 +1,17 @@
+apiVersion: core.contrail.juniper.net/v1alpha1
+kind: GlobalSystemConfig
+metadata:
+  annotations:
+    core.juniper.net/display-name: Default Global System Config
+    core.juniper.net/description:
+      This cluster object defines all the global Contrail configurations. Is
+      unique for a Contrail deployment.
+  name: default-global-system-config
+spec:
+  autonomousSystem: 64512
+  enable4bytesAs: false
+#  bgpRouterReferences:
+#    - apiVersion: core.contrail.juniper.net/v1alpha1
+#      kind: BGPRouter
+#      name: HOSTNAME
+#      namespace: default-project
